@@ -1,0 +1,3 @@
+route_id,agency_id,route_short_name,route_long_name,route_type,route_color,route_text_color,route_desc
+puntal,reginas,Puntal,Santander – El Puntal,4,0099CC,FFFFFF,Servicio playa temporada Jun–Oct
+pedrenya_somo,reginas,Pedreña/Somo,Santander – Pedreña – Somo,4,009966,FFFFFF,Servicio regular Santander–Pedreña–Somo

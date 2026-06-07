@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_email
+reginas,Los Reginas S.L.,https://www.losreginas.com,Europe/Madrid,es,942216753,info@losreginas.es

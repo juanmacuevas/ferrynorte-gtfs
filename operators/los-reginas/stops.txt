@@ -1,0 +1,5 @@
+stop_id,stop_name,stop_lat,stop_lon,stop_desc
+SAN,Santander - Embarcadero,43.4615114,-3.8016377,"Paseo Marítimo s/n, Santander"
+PUN,El Puntal - Embarcadero,43.4567286,-3.7727482,"Playa El Puntal, Somo"
+PED,Pedreña - Embarcadero,43.4489115,-3.7688343,"Pedreña, Marina de Cudeyo"
+SOM,Somo - Embarcadero,43.4518419,-3.7464275,"Somo, Ribamontán al Mar"
