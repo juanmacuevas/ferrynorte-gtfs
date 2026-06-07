@@ -1,0 +1,29 @@
+name: Build GTFS ZIP
+ 
+on:
+  push:
+    paths:
+      - 'operators/**'
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+ 
+      - name: Build ZIPs
+        run: |
+          for op in operators/*/; do
+            name=$(basename "$op")
+            mkdir -p "builds/$name"
+            zip -j "builds/$name/${name}_gtfs.zip" "$op"*.txt
+            echo "Built builds/$name/${name}_gtfs.zip"
+          done
+ 
+      - name: Commit ZIPs
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add builds/
+          git diff --staged --quiet || git commit -m "build: regenerate GTFS ZIPs [skip ci]"
+          git push
