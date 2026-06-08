@@ -1,16 +1,18 @@
 name: Build GTFS ZIP
- 
+
 on:
   push:
     paths:
       - 'operators/**'
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
- 
+
       - name: Build ZIPs
         run: |
           for op in operators/*/; do
@@ -19,7 +21,7 @@ jobs:
             zip -j "builds/$name/${name}_gtfs.zip" "$op"*.txt
             echo "Built builds/$name/${name}_gtfs.zip"
           done
- 
+
       - name: Commit ZIPs
         run: |
           git config user.name  "github-actions[bot]"
