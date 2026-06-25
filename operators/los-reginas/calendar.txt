@@ -1,5 +1,5 @@
 service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
 puntal_2026,1,1,1,1,1,1,1,20260601,20260930
-ped_comun,1,1,1,1,1,1,1,20260523,20261031
-ped_lab,1,1,1,1,1,0,0,20260523,20261031
-ped_fds,0,0,0,0,0,1,1,20260523,20261031
+ped_comun,1,1,1,1,1,1,1,20260622,20261031
+ped_lab,1,1,1,1,1,0,0,20260622,20261031
+ped_fds,0,0,0,0,0,1,1,20260622,20261031

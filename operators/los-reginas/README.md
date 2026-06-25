@@ -11,17 +11,16 @@ Naviera de la Bahía de Santander.
 | Línea | Tipo | Temporada |
 |---|---|---|
 | Santander – El Puntal | Playa, frecuencia 30 min | Jun–Oct |
-| Santander – Pedreña – Somo | Regular | Abr–Oct |
+| Santander – Pedreña – Somo | Regular | Jun–Oct |
  
 ## Calendarios
  
 | service_id | Días | Periodo |
 |---|---|---|
 | `puntal_2026` | Diario | 01/06–04/10/2026 |
-| `ped_comun` | L–D | 23/05–31/10/2026 |
-| `ped_lab` | L–V | 23/05–31/10/2026 |
-| `ped_fds` | S–D + festivos | 23/05–31/10/2026 |
-| `ped_regata` | Solo 12/06/2026 | Regata Bandera Bansander |
+| `ped_comun` | L–D | 22/06–31/10/2026 |
+| `ped_lab` | L–V | 22/06–31/10/2026 |
+| `ped_fds` | S–D + festivos | 22/06–31/10/2026 |
  
 ## Festivos Cantabria 2026 incluidos
  
@@ -41,3 +40,4 @@ Naviera de la Bahía de Santander.
 | Versión | Fecha | Cambios |
 |---|---|---|
 | 2026.1 | 2026-06-08 | Release inicial |
+| 2026.2 | 2026-06-25 | Línea Pedreña–Somo actualizada al horario vigente desde 22/06/2026 (laborables y fines de semana). Eliminada regata (12/06, pasada). |

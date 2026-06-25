@@ -7,4 +7,3 @@ ped_lab,20260915,2
 ped_fds,20260915,1
 ped_lab,20261012,2
 ped_fds,20261012,1
-ped_regata,20260612,1
