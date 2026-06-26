@@ -28,6 +28,25 @@ Naviera de la Bahía de Santander.
 - 15 sep — Festividad de la Bien Aparecida
 - 12 oct — Fiesta Nacional de España
  
+## Fuentes y mantenimiento
+
+La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
+
+| Qué | Dónde | Fuente |
+|---|---|---|
+| Feed (verdad) | [`gtfs/`](gtfs/) | mantenido a mano |
+| Evidencia | [`sources/`](sources/) | PDF de horarios publicado en losreginas.com |
+| Utilidad opcional | [`src/`](src/) | redacta el horario de temporada desde el PDF |
+
+- **Línea Pedreña–Somo**: PDF *laborable* vigente desde **22/06/2026**, PDF
+  *fin de semana* desde 23/05/2026 (ver `sources/`). Verificado por última vez:
+  **2026-06-26**.
+- **Línea El Puntal**: estática (`frequencies.txt`); no procede de PDF.
+- El tooling de [`src/`](src/) es **opcional y no autoritativo** (no lo ejecuta
+  CI): redacta un borrador del horario regular que se revisa a mano. Cambios
+  ad-hoc (eventos, salidas puntuales) se editan directamente en `gtfs/`.
+  Detalle en [`src/README.md`](src/README.md).
+
 ## Notas
  
 - Tiempos de trayecto deducidos matemáticamente del horario publicado.

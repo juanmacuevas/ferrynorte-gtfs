@@ -1,0 +1,54 @@
+{
+  "_about": "Modeling configuration for the Santander-Pedreña-Somo line. The PDFs (timetable.json) only provide departure times + the (*) Pedreña-only flag + the effective date. Everything that is NOT printed on the PDF lives here: stop ids, crossing/dwell minutes, the publishing season window, Cantabria holidays, feed metadata, and the static El Puntal line (which has no PDF and is left untouched).",
+
+  "route": { "route_id": "pedrenya_somo" },
+
+  "stops": { "santander": "SAN", "pedrena": "PED", "somo": "SOM" },
+
+  "network": {
+    "_about": "Travel model used to expand the published departure times into full stop_times. Times are deduced mathematically (see operator README).",
+    "leg_minutes": { "SAN-PED": 15, "PED-SOM": 5 },
+    "dwell_minutes": 5
+  },
+
+  "services": { "common": "ped_comun", "weekday": "ped_lab", "weekend": "ped_fds" },
+
+  "season": {
+    "_about": "Publishing window applied to the three ped_* calendars. start_date overrides the per-sheet 'a partir del' dates from the PDFs (kept as provenance in timetable.json). Bump these when the season changes.",
+    "start_date": "2026-06-22",
+    "end_date": "2026-10-31"
+  },
+
+  "holidays_weekend_schedule": ["2026-07-28", "2026-09-15", "2026-10-12"],
+
+  "trip_template": {
+    "OUT_SOM": { "shape": "SAN_PED_SOM", "direction": 0, "headsign": "Somo" },
+    "RET_SOM": { "shape": "SOM_PED_SAN", "direction": 1, "headsign": "Santander" },
+    "OUT_PED": { "shape": "SAN_PED", "direction": 0, "headsign": "Pedreña" },
+    "DED_PED": { "shape": "PED_SAN", "direction": 1, "headsign": "Santander" }
+  },
+
+  "feed": {
+    "feed_publisher_name": "FerryNorte",
+    "feed_publisher_url": "https://ferrynorte.com",
+    "feed_lang": "es",
+    "feed_version": "2026.2",
+    "feed_contact_email": "info@losreginas.es"
+  },
+
+  "static": {
+    "_about": "El Puntal line + puntal_2026 calendar: not derived from any PDF, emitted verbatim so the build reproduces the whole feed.",
+    "calendar": ["puntal_2026,1,1,1,1,1,1,1,20260601,20260930"],
+    "calendar_dates": ["puntal_2026,20261003,1", "puntal_2026,20261004,1"],
+    "trips": [
+      "PUN_IDA,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1",
+      "PUN_VTA,puntal,puntal_2026,PUN_SAN,1,Santander,0,1"
+    ],
+    "stop_times": [
+      "PUN_IDA,00:00:00,00:00:00,SAN,1,,0,1,1",
+      "PUN_IDA,00:10:00,00:10:00,PUN,2,,1,0,1",
+      "PUN_VTA,00:00:00,00:00:00,PUN,1,,0,1,1",
+      "PUN_VTA,00:10:00,00:10:00,SAN,2,,1,0,1"
+    ]
+  }
+}
