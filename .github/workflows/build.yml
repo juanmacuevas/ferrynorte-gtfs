@@ -1,31 +1,50 @@
-name: Build GTFS ZIP
+name: Publish GTFS feeds
+
+# On any change to an operator's source files, package each feed and publish it
+# to a per-operator GitHub Release with a fixed tag (= operator name). The asset
+# name is constant, so the download URL never changes:
+#   https://github.com/<owner>/<repo>/releases/download/<operator>/<operator>_gtfs.zip
 
 on:
   push:
-    paths:
-      - 'operators/**'
+    branches: [main]
+    paths: ['operators/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build ZIPs
+      - name: Validate feeds (blocking gate)
+        run: python3 scripts/validate.py
+
+      - name: Build & publish each operator's feed
         run: |
+          set -euo pipefail
+          ts=$(date -u +%Y-%m-%dT%H:%MZ)
           for op in operators/*/; do
             name=$(basename "$op")
-            mkdir -p "builds/$name"
-            zip -j "builds/$name/${name}_gtfs.zip" "$op"*.txt
-            echo "Built builds/$name/${name}_gtfs.zip"
-          done
+            [ -d "${op}gtfs" ] || { echo "skip $name (no gtfs/)"; continue; }
 
-      - name: Commit ZIPs
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add builds/
-          git diff --staged --quiet || git commit -m "build: regenerate GTFS ZIPs [skip ci]"
-          git push
+            zip="builds/$name/${name}_gtfs.zip"
+            python3 scripts/zip_feed.py "${op}gtfs" "$zip"
+
+            ver=$(awk -F, 'NR==2{print $6}' "${op}gtfs/feed_info.txt" 2>/dev/null || true)
+            title="$name — feed ${ver:-?} ($ts)"
+            notes="Built $ts from commit ${GITHUB_SHA}. Stable URL: releases/download/$name/${name}_gtfs.zip"
+
+            if gh release view "$name" >/dev/null 2>&1; then
+              gh release edit "$name" --title "$title" --notes "$notes"
+              gh release upload "$name" "$zip" --clobber
+            else
+              gh release create "$name" "$zip" --title "$title" --notes "$notes"
+            fi
+            echo "published $name"
+          done

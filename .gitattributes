@@ -1,0 +1,9 @@
+# Normalize line endings so the byte-exact `make check` is stable across
+# platforms (a Windows contributor's CRLF would otherwise fail the regression).
+* text=auto eol=lf
+
+# Binary sources — never diff or eol-normalize.
+*.pdf binary
+
+# Lockfile is machine-generated: keep it out of GitHub language stats.
+uv.lock linguist-generated=true

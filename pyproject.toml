@@ -1,0 +1,10 @@
+[project]
+name = "ferrynorte-gtfs"
+version = "0"
+description = "GTFS feeds for ferry operators in northern Spain"
+requires-python = ">=3.10"
+dependencies = ["pymupdf>=1.24"]
+
+[tool.uv]
+# This repo is data + scripts, not an installable package — just manage the env.
+package = false
