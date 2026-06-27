@@ -1,6 +1,40 @@
 trip_id,route_id,service_id,shape_id,direction_id,trip_headsign,wheelchair_accessible,bikes_allowed
-PUN_IDA,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
-PUN_VTA,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1030O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1100O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1130O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1200O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1230O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1300O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1330O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1400O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1430O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1500O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1530O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1600O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1630O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1700O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1730O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1800O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1830O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1900O,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1
+PUN_1045R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1115R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1145R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1215R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1245R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1315R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1345R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1415R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1445R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1515R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1545R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1615R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1645R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1715R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1745R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1815R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1845R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
+PUN_1915R,puntal,puntal_2026,PUN_SAN,1,Santander,0,1
 PS_C_0935O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1030O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1140O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
