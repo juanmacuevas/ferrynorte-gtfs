@@ -8,7 +8,7 @@ GTFS   := $(OPDIR)/gtfs
 BUILD  := builds/$(OPERATOR)
 
 .DEFAULT_GOAL := help
-.PHONY: help setup build check validate zip clean
+.PHONY: help setup watch build check validate zip clean
 
 help: ## List available targets
 	@grep -hE '^[a-zA-Z_-]+:.*## ' $(MAKEFILE_LIST) \
@@ -18,7 +18,10 @@ help: ## List available targets
 setup: ## Install dependencies into a uv-managed venv
 	uv sync
 
-build: ## Rebuild the operator's GTFS .txt files from its source PDFs
+watch: ## Check the operator's website for a newly published timetable (source drift)
+	uv run python $(SRC)/check_source.py
+
+build: ## Rebuild the operator's GTFS .txt files from its source PDFs (URLs in config)
 	uv run python $(SRC)/extract.py
 	uv run python $(SRC)/build.py
 

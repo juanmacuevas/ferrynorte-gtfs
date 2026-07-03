@@ -8,25 +8,37 @@
 > sailings) are edited directly in `../gtfs/`; transient disruptions (low tides)
 > are out of scope for the static feed.
 
-Two-stage, deterministic. The source PDFs live in [`../sources/`](../sources/)
-and are Microsoft Excel *Print To PDF* exports of `Horarios 2026.xlsx`, so the
-page is a clean fixed-column grid read by cell position — no OCR, no heuristics.
+Deterministic. The source PDFs are published on losreginas.com and pinned as
+URLs in `config.json` → `source.pdfs`; `extract.py` fetches them directly (no
+PDF binary is committed). They are Microsoft Excel *Print To PDF* exports of
+`Horarios 2026.xlsx`, so each page is a clean fixed-column grid read by cell
+position — no OCR, no heuristics.
 
 ```
-../sources/horario-laborable.pdf ┐               ┌─ trips.txt
-../sources/horario-finde.pdf     ┼─ extract.py ─→ timetable.json ─ build.py ─┼─ stop_times.txt
-                                 │  (stage 1)                      (stage 2)  ├─ calendar.txt
-config.json ─────────────────────────────────────────────────────────────────┼─ calendar_dates.txt
-                                                                              └─ feed_info.txt
+                        check_source.py  (stage 0: watch the site for new PDFs)
+config.source.pdfs (URLs) ┐              ┌─ trips.txt
+losreginas.com PDFs ──────┼─ extract.py ─→ timetable.json ─ build.py ─┼─ stop_times.txt
+                          │  (stage 1)                      (stage 2)  ├─ calendar.txt
+config.json ───────────────────────────────────────────────────────────┼─ calendar_dates.txt
+                                                                        └─ feed_info.txt
 ```
+
+## Stage 0 — `check_source.py`  (watch the website)
+
+A *detector*, not an updater. It fetches `source.listing_url`, scrapes the
+`horario-*.pdf` links (by filename, so a WordPress theme change won't blind it),
+and compares them to the URLs pinned in `source.pdfs`. Exit `0` = unchanged,
+`1` = the links moved (a new timetable was published — act on it), `2` = could
+not check (network/parse; not a schedule signal). Run `make watch`, or on a cron
+to get alerted when Los Reginas republishes.
 
 ## Stage 1 — `extract.py`  (PDF → `timetable.json`)
 
 Pure transcription, **no GTFS modeling**. For each PDF it records only what is
 printed: the three departure columns (`Santander→Pedreña/Somo`, `Somo→Santander`,
 `Pedreña→Santander`), the `(*)` "only reaches Pedreña" flag, the *a partir del*
-effective date, the day type, and source provenance (file name, Excel title,
-SHA-256). Columns are located by clustering the x-positions of the `HH:MM`
+effective date, the day type, and source provenance (source URL/path, Excel
+title, SHA-256). Columns are located by clustering the x-positions of the `HH:MM`
 tokens into three groups; it aborts if the layout isn't three columns.
 
 `timetable.json` is human-diffable: when a new PDF drops, regenerate it and the
@@ -56,14 +68,19 @@ From the repo root, via the Makefile (uv handles dependencies):
 
 ```bash
 make setup                      # once: uv sync (installs pymupdf)
-make build                      # rebuild operators/los-reginas/gtfs/*.txt from the PDFs
+make watch                      # check the website for a newly published timetable
+make build                      # rebuild operators/los-reginas/gtfs/*.txt from the source PDFs
 make check                      # rebuild in memory, diff vs committed gtfs/*.txt, write nothing
 ```
 
-Or run a stage directly (uv reads the PEP-723 header in `extract.py`):
+Or run a stage directly (uv reads the PEP-723 header in each script). `extract.py`
+defaults to the URLs in `config.source.pdfs`; pass a path or URL to override
+(handy for testing a downloaded or draft PDF offline):
 
 ```bash
-uv run operators/los-reginas/src/extract.py
+uv run operators/los-reginas/src/check_source.py
+uv run operators/los-reginas/src/extract.py                 # from config URLs
+uv run operators/los-reginas/src/extract.py ~/Downloads/nuevo.pdf   # local override
 uv run operators/los-reginas/src/build.py --check
 ```
 
@@ -75,14 +92,15 @@ and will legitimately make `--check` differ. The blocking gate in CI is
 
 ## Updating when a new clean PDF is published
 
-1. Replace the PDF(s) in [`../sources/`](../sources/) (same file names, or pass
-   paths to `extract.py`).
-2. Adjust `config.json` if the season window, holidays, travel model or feed
-   version changed.
-3. `make build` to draft the regular-season schedule into `../gtfs/`.
-4. **Review `git diff` on `../gtfs/*.txt`** — accept what's right, hand-fix
+`make watch` flags this (exit 1) when the site's `horario-*.pdf` links move.
+
+1. Point `config.source.pdfs` at the new URL(s). Bump `config.feed.feed_version`
+   and adjust the season window / holidays / travel model if they changed too.
+2. `make build` to draft the regular-season schedule into `../gtfs/` (it fetches
+   the pinned URLs).
+3. **Review `git diff` on `../gtfs/*.txt`** — accept what's right, hand-fix
    anything the PDF expresses that the model doesn't (special sailings, notes).
-5. `make validate`, then commit.
+4. `make validate`, then commit.
 
 If a PDF is too ad-hoc to model cleanly, skip this tooling entirely and edit
 `../gtfs/*.txt` by hand — that's a fully supported path.

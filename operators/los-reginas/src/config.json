@@ -1,6 +1,15 @@
 {
   "_about": "Modeling configuration for the Santander-Pedreña-Somo line. The PDFs (timetable.json) only provide departure times + the (*) Pedreña-only flag + the effective date. Everything that is NOT printed on the PDF lives here: stop ids, crossing/dwell minutes, the publishing season window, Cantabria holidays, feed metadata, and the static El Puntal line (which has no PDF and is left untouched).",
 
+  "source": {
+    "_about": "Where the published timetable lives. check_source.py fetches listing_url and alerts when the linked horario-*.pdf files drift from `pdfs` below (Los Reginas date-stamps every republish, e.g. horario-fines-de-semana-04.07.pdf, and swaps the link). extract.py reads these URLs directly by default, so the feed is sourced from the live PDFs — no PDF binaries are committed. When the watcher fires: update the URL(s) here, then `make build` and review the diff.",
+    "listing_url": "https://www.losreginas.com/paseos-en-barco-por-la-bahia-de-santander-con-escala-en-pedrena-y-somo/horarios-y-tarifas-viaje-pedrena-somo/",
+    "pdfs": {
+      "weekday": "https://www.losreginas.com/wp-content/uploads/2026/06/horario-laborable-22.06.pdf",
+      "weekend": "https://www.losreginas.com/wp-content/uploads/2026/06/horario-fines-de-semana-04.07.pdf"
+    }
+  },
+
   "route": { "route_id": "pedrenya_somo" },
 
   "stops": { "santander": "SAN", "pedrena": "PED", "somo": "SOM" },

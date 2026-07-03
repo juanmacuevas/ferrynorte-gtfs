@@ -35,11 +35,12 @@ La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
 | Qué | Dónde | Fuente |
 |---|---|---|
 | Feed (verdad) | [`gtfs/`](gtfs/) | mantenido a mano |
-| Evidencia | [`sources/`](sources/) | PDF de horarios publicado en losreginas.com |
-| Utilidad opcional | [`src/`](src/) | redacta el horario de temporada desde el PDF |
+| Origen | [`src/config.json`](src/config.json) → `source.pdfs` | URLs de los PDF publicados en losreginas.com |
+| Vigilancia | [`src/check_source.py`](src/check_source.py) (`make watch`) | avisa cuando cambian los enlaces a PDF de la web |
+| Utilidad opcional | [`src/`](src/) | redacta el horario de temporada desde los PDF (los descarga de las URLs) |
 
 - **Línea Pedreña–Somo**: PDF *laborable* vigente desde **22/06/2026**, PDF
-  *fin de semana* desde **04/07/2026** (ver `sources/`). Verificado por última vez:
+  *fin de semana* desde **04/07/2026** (URLs en `src/config.json`). Verificado por última vez:
   **2026-07-03**.
 - **Línea El Puntal**: estática (`frequencies.txt`); no procede de PDF.
 - El tooling de [`src/`](src/) es **opcional y no autoritativo** (no lo ejecuta
