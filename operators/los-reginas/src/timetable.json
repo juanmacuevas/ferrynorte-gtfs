@@ -92,13 +92,13 @@
       }
     },
     {
-      "source_file": "horario-finde.pdf",
+      "source_file": "horario-fines-de-semana-04.07.pdf",
       "source_title": "Horarios 2026.xlsx",
       "source_producer": "Microsoft: Print To PDF",
-      "source_sha256": "f2aa513d67bd3e72242eaa2ad68749e72f81e20ebecbad0d1124127918f6ea9f",
+      "source_sha256": "b22fd6df9b350997defc6148820e851ec3876978c939f17da22b98993d9a9ae3",
       "day_type": "weekend",
       "label_es": "SÁBADOS, DOMINGOS Y FESTIVOS",
-      "effective_date": "2026-05-23",
+      "effective_date": "2026-07-04",
       "pedrena_only": [],
       "columns": {
         "santander_to_pedrena_somo": [
@@ -119,8 +119,9 @@
           "18:50",
           "19:20",
           "20:00",
-          "20:30",
-          "21:00"
+          "20:40",
+          "21:10",
+          "21:40"
         ],
         "somo_to_santander": [
           "10:00",
@@ -140,7 +141,8 @@
           "18:45",
           "19:25",
           "19:55",
-          "20:30"
+          "20:35",
+          "21:05"
         ],
         "pedrena_to_santander": [
           "09:05",
@@ -161,7 +163,8 @@
           "18:55",
           "19:35",
           "20:05",
-          "20:40"
+          "20:45",
+          "21:15"
         ]
       }
     }

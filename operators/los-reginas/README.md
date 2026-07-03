@@ -39,8 +39,8 @@ La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
 | Utilidad opcional | [`src/`](src/) | redacta el horario de temporada desde el PDF |
 
 - **Línea Pedreña–Somo**: PDF *laborable* vigente desde **22/06/2026**, PDF
-  *fin de semana* desde 23/05/2026 (ver `sources/`). Verificado por última vez:
-  **2026-06-26**.
+  *fin de semana* desde **04/07/2026** (ver `sources/`). Verificado por última vez:
+  **2026-07-03**.
 - **Línea El Puntal**: estática (`frequencies.txt`); no procede de PDF.
 - El tooling de [`src/`](src/) es **opcional y no autoritativo** (no lo ejecuta
   CI): redacta un borrador del horario regular que se revisa a mano. Cambios
@@ -60,3 +60,4 @@ La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
 |---|---|---|
 | 2026.1 | 2026-06-08 | Release inicial |
 | 2026.2 | 2026-06-25 | Línea Pedreña–Somo actualizada al horario vigente desde 22/06/2026 (laborables y fines de semana). Eliminada regata (12/06, pasada). |
+| 2026.3 | 2026-07-03 | Horario de fin de semana/festivos actualizado al vigente desde 04/07/2026: cadencia nocturna ampliada (Santander +20:40/21:10/21:40, Somo +20:35/21:05, Pedreña +20:45/21:15). Las salidas de Santander 20:30 y 21:00 pasan a ser solo laborables. |
