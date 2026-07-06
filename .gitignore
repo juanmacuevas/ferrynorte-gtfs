@@ -3,3 +3,7 @@
 __pycache__/
 .venv/
 /builds/
+.idea/
+
+# Source timetable PDFs are fetched by URL, never committed (see config.source)
+operators/*/sources/*.pdf
