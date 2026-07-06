@@ -1,5 +1,5 @@
-fare_id,price,currency_type,payment_method,transfers
-pedsomo_ida,4.00,EUR,0,0
-pedsomo_ida_vta,6.50,EUR,0,1
-puntal_ida,4.00,EUR,0,0
-puntal_ida_vta,5.70,EUR,0,1
+fare_id,price,currency_type,payment_method,transfers,agency_id
+pedsomo_ida,4.00,EUR,0,0,reginas
+pedsomo_ida_vta,6.50,EUR,0,1,reginas
+puntal_ida,4.00,EUR,0,0,reginas
+puntal_ida_vta,5.70,EUR,0,1,reginas

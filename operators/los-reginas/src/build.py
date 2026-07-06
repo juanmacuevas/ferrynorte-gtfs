@@ -190,11 +190,11 @@ def build(timetable, config):
 
     fares = config.get("fares")
     if fares:
-        cur, pm = fares["currency"], fares["payment_method"]
-        fa_rows = ["fare_id,price,currency_type,payment_method,transfers"]
+        cur, pm, ag = fares["currency"], fares["payment_method"], fares["agency_id"]
+        fa_rows = ["fare_id,price,currency_type,payment_method,transfers,agency_id"]
         fr_rows = ["fare_id,route_id"]
         for p in fares["products"]:
-            fa_rows.append(f"{p['fare_id']},{p['price']},{cur},{pm},{p['transfers']}")
+            fa_rows.append(f"{p['fare_id']},{p['price']},{cur},{pm},{p['transfers']},{ag}")
             fr_rows.append(f"{p['fare_id']},{p['route_id']}")
         files["fare_attributes.txt"] = fa_rows
         files["fare_rules.txt"] = fr_rows

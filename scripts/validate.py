@@ -109,8 +109,12 @@ def validate(gtfs_dir):
         if r["trip_id"] not in trip_ids:
             err(f"frequencies: unknown trip_id '{r['trip_id']}'")
 
-    # fares (v1): rules -> fare_attributes / routes
+    # fares (v1): attributes -> agency, rules -> fare_attributes / routes
     fare_ids = ids(fare_attrs, "fare_id")
+    for r in fare_attrs:
+        a = r.get("agency_id")
+        if a and a not in agency_ids:
+            err(f"fare_attributes: fare_id '{r['fare_id']}' -> unknown agency_id '{a}'")
     for r in fare_rules:
         if r["fare_id"] not in fare_ids:
             err(f"fare_rules: unknown fare_id '{r['fare_id']}'")

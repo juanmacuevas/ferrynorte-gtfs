@@ -49,6 +49,7 @@
     "_about": "GTFS Fares v1, emitted by build.py into fare_attributes.txt + fare_rules.txt. Prices are from the operator's printed TARIFAS sheet; tickets are sold onboard / at the dock taquilla, so for trip planners this is informational. NOT watched by check_source.py (the tariff isn't among the source PDFs), so bump these by hand when the printed tariff changes. currency EUR; payment_method 0 = paid on board. Round trips (ida+vuelta) use transfers=1 so a single purchase covers the return crossing — but note Google Maps plans one-way journeys and will surface the one-way (ida) fare, not the return.",
     "currency": "EUR",
     "payment_method": 0,
+    "agency_id": "reginas",
     "products": [
       { "fare_id": "pedsomo_ida",     "route_id": "pedrenya_somo", "price": "4.00", "transfers": 0 },
       { "fare_id": "pedsomo_ida_vta", "route_id": "pedrenya_somo", "price": "6.50", "transfers": 1 },
