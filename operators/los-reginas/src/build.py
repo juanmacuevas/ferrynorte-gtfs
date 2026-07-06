@@ -6,6 +6,11 @@ schedule-dependent GTFS files:
 
     trips.txt  stop_times.txt  calendar.txt  calendar_dates.txt  feed_info.txt
 
+plus the config-driven fare files (static, not timetable-derived, but kept in
+one place — config.fares — so prices are edited once):
+
+    fare_attributes.txt  fare_rules.txt
+
 The static files (agency.txt, stops.txt, routes.txt, shapes.txt,
 frequencies.txt) describe geography/identity, not the timetable, so they are
 left untouched.
@@ -53,6 +58,28 @@ def hhmm4(x):
 
 def ymd(iso):
     return iso.replace("-", "")
+
+
+def puntal_rows(spec):
+    """Expand the El Puntal frequency spec into explicit trips + stop_times.
+
+    Half-hourly shuttle with one crossing each way. Emits all outbound trips
+    (direction 0) then all returns (direction 1), matching the feed layout.
+    trip_id is PUN_<HHMM><suffix> keyed on that leg's departure time.
+    """
+    leg, hw = spec["leg_minutes"], spec["headway_minutes"]
+    route, service = spec["route_id"], spec["service_id"]
+    trips, sts = [], []
+    for direction, key in ((0, "outbound"), (1, "return")):
+        d = spec[key]
+        dep = m2(d["first"])
+        while dep <= m2(d["last"]):
+            tid = f"PUN_{hhmm4(dep)}{d['id_suffix']}"
+            trips.append(f"{tid},{route},{service},{d['shape']},{direction},{d['headsign']},0,1")
+            sts.append(f"{tid},{hms(dep)},{hms(dep)},{d['from']},1,,0,1,1")
+            sts.append(f"{tid},{hms(dep + leg)},{hms(dep + leg)},{d['to']},2,,1,0,1")
+            dep += hw
+    return trips, sts
 
 
 def trips_for(sch, pass_offset):
@@ -110,10 +137,16 @@ def build(timetable, config):
             return f"PS_{letter}_PED{hhmm4(dep)}"
         return f"PS_{letter}_{hhmm4(dep)}{SUFFIX[kind]}"
 
+    static = config["static"]
+    static_trips, static_st = list(static.get("trips", [])), list(static.get("stop_times", []))
+    if "puntal" in static:                            # El Puntal: expanded from a frequency spec
+        pt, pst = puntal_rows(static["puntal"])
+        static_trips, static_st = pt + static_trips, pst + static_st
+
     trip_rows = ["trip_id,route_id,service_id,shape_id,direction_id,trip_headsign,"
-                 "wheelchair_accessible,bikes_allowed"] + list(config["static"]["trips"])
+                 "wheelchair_accessible,bikes_allowed"] + static_trips
     st_rows = ["trip_id,arrival_time,departure_time,stop_id,stop_sequence,stop_headsign,"
-               "pickup_type,drop_off_type,timepoint"] + list(config["static"]["stop_times"])
+               "pickup_type,drop_off_type,timepoint"] + static_st
 
     for letter, service_id, trips in (("C", svc["common"], common),
                                       ("L", svc["weekday"], weekday_only),
@@ -147,13 +180,26 @@ def build(timetable, config):
                  f"{f['feed_publisher_name']},{f['feed_publisher_url']},{f['feed_lang']},"
                  f"{min(starts)},{max(ends)},{f['feed_version']},{f['feed_contact_email']}"]
 
-    return {
+    files = {
         "trips.txt": trip_rows,
         "stop_times.txt": st_rows,
         "calendar.txt": cal_rows,
         "calendar_dates.txt": cd_rows,
         "feed_info.txt": feed_rows,
     }
+
+    fares = config.get("fares")
+    if fares:
+        cur, pm = fares["currency"], fares["payment_method"]
+        fa_rows = ["fare_id,price,currency_type,payment_method,transfers"]
+        fr_rows = ["fare_id,route_id"]
+        for p in fares["products"]:
+            fa_rows.append(f"{p['fare_id']},{p['price']},{cur},{pm},{p['transfers']}")
+            fr_rows.append(f"{p['fare_id']},{p['route_id']}")
+        files["fare_attributes.txt"] = fa_rows
+        files["fare_rules.txt"] = fr_rows
+
+    return files
 
 
 def main():

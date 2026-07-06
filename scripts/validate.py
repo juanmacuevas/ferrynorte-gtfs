@@ -59,6 +59,8 @@ def validate(gtfs_dir):
     shapes = load(os.path.join(gtfs_dir, "shapes.txt")) or []
     freqs = load(os.path.join(gtfs_dir, "frequencies.txt")) or []
     feedinfo = load(os.path.join(gtfs_dir, "feed_info.txt")) or []
+    fare_attrs = load(os.path.join(gtfs_dir, "fare_attributes.txt")) or []
+    fare_rules = load(os.path.join(gtfs_dir, "fare_rules.txt")) or []
 
     agency_ids = ids(agency, "agency_id")
     stop_ids = ids(stops, "stop_id")
@@ -106,6 +108,15 @@ def validate(gtfs_dir):
     for r in freqs:
         if r["trip_id"] not in trip_ids:
             err(f"frequencies: unknown trip_id '{r['trip_id']}'")
+
+    # fares (v1): rules -> fare_attributes / routes
+    fare_ids = ids(fare_attrs, "fare_id")
+    for r in fare_rules:
+        if r["fare_id"] not in fare_ids:
+            err(f"fare_rules: unknown fare_id '{r['fare_id']}'")
+        rt = r.get("route_id")
+        if rt and rt not in route_ids:
+            err(f"fare_rules: fare_id '{r['fare_id']}' -> unknown route_id '{rt}'")
 
     # stop_times -> trips/stops, and per-trip structure
     per_trip = {}

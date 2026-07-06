@@ -38,26 +38,39 @@
   },
 
   "feed": {
-    "feed_publisher_name": "FerryNorte",
-    "feed_publisher_url": "https://ferrynorte.com",
+    "feed_publisher_name": "Los Reginas",
+    "feed_publisher_url": "https://www.losreginas.com/",
     "feed_lang": "es",
-    "feed_version": "2026.3",
+    "feed_version": "2026.4",
     "feed_contact_email": "info@losreginas.es"
   },
 
+  "fares": {
+    "_about": "GTFS Fares v1, emitted by build.py into fare_attributes.txt + fare_rules.txt. Prices are from the operator's printed TARIFAS sheet; tickets are sold onboard / at the dock taquilla, so for trip planners this is informational. NOT watched by check_source.py (the tariff isn't among the source PDFs), so bump these by hand when the printed tariff changes. currency EUR; payment_method 0 = paid on board. Round trips (ida+vuelta) use transfers=1 so a single purchase covers the return crossing — but note Google Maps plans one-way journeys and will surface the one-way (ida) fare, not the return.",
+    "currency": "EUR",
+    "payment_method": 0,
+    "products": [
+      { "fare_id": "pedsomo_ida",     "route_id": "pedrenya_somo", "price": "4.00", "transfers": 0 },
+      { "fare_id": "pedsomo_ida_vta", "route_id": "pedrenya_somo", "price": "6.50", "transfers": 1 },
+      { "fare_id": "puntal_ida",      "route_id": "puntal",        "price": "4.00", "transfers": 0 },
+      { "fare_id": "puntal_ida_vta",  "route_id": "puntal",        "price": "5.70", "transfers": 1 }
+    ]
+  },
+
   "static": {
-    "_about": "El Puntal line + puntal_2026 calendar: not derived from any PDF, emitted verbatim so the build reproduces the whole feed.",
+    "_about": "El Puntal line + puntal_2026 calendar: not derived from any PDF. build.py expands the `puntal` frequency spec below into explicit half-hourly trips (trip_id PUN_<HHMM><O|R>), so the build reproduces the whole line. calendar/calendar_dates are emitted verbatim. Any extra one-off rows can be added to `trips`/`stop_times` (prepended verbatim).",
     "calendar": ["puntal_2026,1,1,1,1,1,1,1,20260601,20260930"],
     "calendar_dates": ["puntal_2026,20261003,1", "puntal_2026,20261004,1"],
-    "trips": [
-      "PUN_IDA,puntal,puntal_2026,SAN_PUN,0,El Puntal,0,1",
-      "PUN_VTA,puntal,puntal_2026,PUN_SAN,1,Santander,0,1"
-    ],
-    "stop_times": [
-      "PUN_IDA,00:00:00,00:00:00,SAN,1,,0,1,1",
-      "PUN_IDA,00:10:00,00:10:00,PUN,2,,1,0,1",
-      "PUN_VTA,00:00:00,00:00:00,PUN,1,,0,1,1",
-      "PUN_VTA,00:10:00,00:10:00,SAN,2,,1,0,1"
-    ]
+    "puntal": {
+      "_about": "Half-hourly beach shuttle, single leg each way. Outbound departs Santander 10:30–19:00; return departs El Puntal 10:45–19:15 (both every 30 min). One 10-min crossing.",
+      "route_id": "puntal",
+      "service_id": "puntal_2026",
+      "leg_minutes": 10,
+      "headway_minutes": 30,
+      "outbound": { "id_suffix": "O", "shape": "SAN_PUN", "headsign": "El Puntal", "from": "SAN", "to": "PUN", "first": "10:30", "last": "19:00" },
+      "return":   { "id_suffix": "R", "shape": "PUN_SAN", "headsign": "Santander", "from": "PUN", "to": "SAN", "first": "10:45", "last": "19:15" }
+    },
+    "trips": [],
+    "stop_times": []
   }
 }

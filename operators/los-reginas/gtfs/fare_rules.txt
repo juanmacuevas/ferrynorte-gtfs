@@ -1,0 +1,5 @@
+fare_id,route_id
+pedsomo_ida,pedrenya_somo
+pedsomo_ida_vta,pedrenya_somo
+puntal_ida,puntal
+puntal_ida_vta,puntal
