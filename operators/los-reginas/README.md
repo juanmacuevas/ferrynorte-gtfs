@@ -40,9 +40,9 @@ La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
 | Vigilancia | [`src/check_source.py`](src/check_source.py) (`make watch`) | avisa cuando cambian los enlaces a PDF de la web |
 | Utilidad opcional | [`src/`](src/) | redacta el horario de temporada desde los PDF (los descarga de las URLs) |
 
-- **Línea Pedreña–Somo**: PDF *laborable* vigente desde **22/06/2026**, PDF
-  *fin de semana* desde **04/07/2026** (URLs en `src/config.json`). Verificado por última vez:
-  **2026-07-03**.
+- **Línea Pedreña–Somo**: PDF *laborable* vigente desde **31/08/2026**, PDF
+  *fin de semana* desde **05/09/2026** (URLs en `src/config.json`). Verificado por última vez:
+  **2026-09-01**.
 - **Línea El Puntal**: estática (`frequencies.txt`); no procede de PDF.
 - El tooling de [`src/`](src/) es **opcional y no autoritativo** (no lo ejecuta
   CI): redacta un borrador del horario regular que se revisa a mano. Cambios
@@ -68,3 +68,4 @@ La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
 | 2026.2 | 2026-06-25 | Línea Pedreña–Somo actualizada al horario vigente desde 22/06/2026 (laborables y fines de semana). Eliminada regata (12/06, pasada). |
 | 2026.3 | 2026-07-03 | Horario de fin de semana/festivos actualizado al vigente desde 04/07/2026: cadencia nocturna ampliada (Santander +20:40/21:10/21:40, Somo +20:35/21:05, Pedreña +20:45/21:15). Las salidas de Santander 20:30 y 21:00 pasan a ser solo laborables. |
 | 2026.4 | 2026-07-06 | Editor del feed (`feed_publisher_name`/`url`) fijado a «Los Reginas» / losreginas.com. Añadidas tarifas (GTFS Fares v1): billete de ida y de ida+vuelta para ambas líneas. `route_short_name` de El Puntal vaciado (evita el aviso «headsign contiene route short name» en Google). |
+| 2026.8 | 2026-09-01 | Pedreña–Somo actualizada a los PDF vigentes: laborable desde 31/08/2026 y fin de semana desde 05/09/2026. Las salidas nocturnas (Santander 20:40/21:10/21:40, Somo 20:35/21:05) pasan a ser diarias; nueva rotación matinal diaria (Somo 10:30 / Santander 11:05); eliminadas las salidas de Santander 20:30/21:00 solo laborables. Retirados los servicios temporales ya vencidos de julio (pico vespertino) y agosto. |
