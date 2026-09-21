@@ -5,8 +5,8 @@
     "_about": "Where the published timetable lives. check_source.py fetches listing_url and alerts when the linked horario-*.pdf files drift from `pdfs` below (Los Reginas date-stamps every republish, e.g. horario-fines-de-semana-04.07.pdf, and swaps the link). extract.py reads these URLs directly by default, so the feed is sourced from the live PDFs — no PDF binaries are committed. When the watcher fires: update the URL(s) here, then `make build` and review the diff.",
     "listing_url": "https://www.losreginas.com/paseos-en-barco-por-la-bahia-de-santander-con-escala-en-pedrena-y-somo/horarios-y-tarifas-viaje-pedrena-somo/",
     "pdfs": {
-      "weekday": "https://www.losreginas.com/wp-content/uploads/2026/08/HORARIO-LABORABLE-31.08.26.pdf",
-      "weekend": "https://www.losreginas.com/wp-content/uploads/2026/08/HORARIO-FIN-DE-SEMANA-05.09.26.pdf"
+      "weekday": "https://www.losreginas.com/wp-content/uploads/2026/09/HORARIO-LABORABLE-21.09.26.pdf",
+      "weekend": "https://www.losreginas.com/wp-content/uploads/2026/09/HORARIO-FIN-DE-SEMANA-26.09.26.pdf"
     }
   },
 
@@ -25,10 +25,12 @@
   "season": {
     "_about": "Publishing window applied to the three ped_* calendars. start_date overrides the per-sheet 'a partir del' dates from the PDFs (kept as provenance in timetable.json). Bump these when the season changes.",
     "start_date": "2026-06-22",
-    "end_date": "2026-10-31"
+    "end_date": "2027-09-30"
   },
 
-  "holidays_weekend_schedule": ["2026-07-28", "2026-09-15", "2026-10-12"],
+  "holidays_weekend_schedule": ["2026-07-28", "2026-09-15", "2026-10-12", "2026-12-08", "2026-12-25",
+                                "2027-01-01", "2027-01-06", "2027-03-25", "2027-03-26", "2027-07-28",
+                                "2027-09-15"],
 
   "trip_template": {
     "OUT_SOM": { "shape": "SAN_PED_SOM", "direction": 0, "headsign": "Somo" },
@@ -41,7 +43,7 @@
     "feed_publisher_name": "Los Reginas",
     "feed_publisher_url": "https://www.losreginas.com/",
     "feed_lang": "es",
-    "feed_version": "2026.8",
+    "feed_version": "2026.9",
     "feed_contact_email": "info@losreginas.es"
   },
 

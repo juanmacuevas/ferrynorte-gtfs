@@ -45,6 +45,7 @@ PS_C_1320O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1400O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1430O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1510O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
+PS_C_1540O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1630O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1700O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1740O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
@@ -52,9 +53,8 @@ PS_C_1810O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1850O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1920O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_2000O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
-PS_C_2040O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
-PS_C_2110O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
-PS_C_2140O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
+PS_C_2030O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
+PS_C_2100O,pedrenya_somo,ped_comun,SAN_PED_SOM,0,Somo,0,1
 PS_C_1000R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
 PS_C_1030R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
 PS_C_1105R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
@@ -73,8 +73,7 @@ PS_C_1815R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
 PS_C_1845R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
 PS_C_1925R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
 PS_C_1955R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
-PS_C_2035R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
-PS_C_2105R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
+PS_C_2025R,pedrenya_somo,ped_comun,SOM_PED_SAN,1,Santander,0,1
 PS_L_PED0720,pedrenya_somo,ped_lab,PED_SAN,1,Santander,0,1
 PS_L_PED0755,pedrenya_somo,ped_lab,PED_SAN,1,Santander,0,1
 PS_L_PED0835,pedrenya_somo,ped_lab,PED_SAN,1,Santander,0,1
@@ -82,8 +81,6 @@ PS_L_0735P,pedrenya_somo,ped_lab,SAN_PED,0,Pedreña,0,1
 PS_L_0815P,pedrenya_somo,ped_lab,SAN_PED,0,Pedreña,0,1
 PS_L_0855O,pedrenya_somo,ped_lab,SAN_PED_SOM,0,Somo,0,1
 PS_L_1000O,pedrenya_somo,ped_lab,SAN_PED_SOM,0,Somo,0,1
-PS_L_1540O,pedrenya_somo,ped_lab,SAN_PED_SOM,0,Somo,0,1
 PS_L_0905R,pedrenya_somo,ped_lab,SOM_PED_SAN,1,Santander,0,1
 PS_L_0925R,pedrenya_somo,ped_lab,SOM_PED_SAN,1,Santander,0,1
 PS_F_PED0905,pedrenya_somo,ped_fds,PED_SAN,1,Santander,0,1
-PS_F_1550O,pedrenya_somo,ped_fds,SAN_PED_SOM,0,Somo,0,1
