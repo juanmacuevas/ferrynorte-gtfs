@@ -56,7 +56,7 @@ La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
 
 - **Línea Pedreña–Somo**: PDF *laborable* vigente desde **21/09/2026**, PDF
   *fin de semana* desde **26/09/2026** (URLs en `src/config.json`). Verificado por última vez:
-  **2026-09-21**.
+  **2026-10-05**.
 - **Línea El Puntal**: estática (`frequencies.txt`); no procede de PDF.
 - El tooling de [`src/`](src/) es **opcional y no autoritativo** (no lo ejecuta
   CI): redacta un borrador del horario regular que se revisa a mano. Cambios
@@ -84,3 +84,4 @@ La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
 | 2026.4 | 2026-07-06 | Editor del feed (`feed_publisher_name`/`url`) fijado a «Los Reginas» / losreginas.com. Añadidas tarifas (GTFS Fares v1): billete de ida y de ida+vuelta para ambas líneas. `route_short_name` de El Puntal vaciado (evita el aviso «headsign contiene route short name» en Google). |
 | 2026.8 | 2026-09-01 | Pedreña–Somo actualizada a los PDF vigentes: laborable desde 31/08/2026 y fin de semana desde 05/09/2026. Las salidas nocturnas (Santander 20:40/21:10/21:40, Somo 20:35/21:05) pasan a ser diarias; nueva rotación matinal diaria (Somo 10:30 / Santander 11:05); eliminadas las salidas de Santander 20:30/21:00 solo laborables. Retirados los servicios temporales ya vencidos de julio (pico vespertino) y agosto. |
 | 2026.9 | 2026-09-21 | Pedreña–Somo actualizada a los PDF de otoño: laborable desde 21/09/2026 y fin de semana desde 26/09/2026. Se retiran las salidas nocturnas (Santander 20:40/21:10/21:40 → 20:30/21:00; Somo 20:35/21:05 → 20:25; Pedreña 20:45/21:15 → 20:35) y la salida de fin de semana de Santander 15:50 pasa a 15:40. Ventana de los calendarios `ped_*` y `feed_end_date` extendida hasta 30/09/2027 (línea regular sin fecha final publicada) para evitar los avisos de caducidad de Google Transit; añadidos los festivos con horario de fin de semana hasta sep/2027. El Puntal sin cambios (termina el 04/10/2026). |
+| 2026.10 | 2026-10-05 | Revisión de los PDF vigentes (laborable 21/09/2026, fin de semana 26/09/2026): sin cambios de horario; solo se sube la versión. |
