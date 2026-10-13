@@ -39,8 +39,8 @@ import sys, json, argparse, difflib
 from pathlib import Path
 
 # kind -> id suffix; ordering of kinds within a service block (stable output)
-SUFFIX = {"OUT_SOM": "O", "RET_SOM": "R", "OUT_PED": "P"}
-KIND_ORDER = {"DED_PED": 0, "OUT_PED": 1, "OUT_SOM": 2, "RET_SOM": 3}
+SUFFIX = {"OUT_SOM": "O", "RET_SOM": "R", "RET_DIRECT": "R", "OUT_PED": "P"}
+KIND_ORDER = {"DED_PED": 0, "OUT_PED": 1, "OUT_SOM": 2, "RET_SOM": 3, "RET_DIRECT": 4}
 
 
 def m2(hhmm):
@@ -87,11 +87,14 @@ def trips_for(sch, pass_offset):
     cols = sch["columns"]
     only = set(sch["pedrena_only"])
     som_min = {m2(t) for t in cols["somo_to_santander"]}
+    ped_min = {m2(t) for t in cols["pedrena_to_santander"]}
     out = set()
     for t in cols["santander_to_pedrena_somo"]:
         out.add(("OUT_PED" if t in only else "OUT_SOM", m2(t)))
     for t in cols["somo_to_santander"]:
-        out.add(("RET_SOM", m2(t)))
+        # The PDF is the source of truth: a Somo return only calls at Pedreña
+        # if the Pedreña column prints that call.
+        out.add(("RET_SOM" if m2(t) + pass_offset in ped_min else "RET_DIRECT", m2(t)))
     for t in cols["pedrena_to_santander"]:
         if (m2(t) - pass_offset) in som_min:
             continue                                  # return passing through Pedreña
@@ -115,6 +118,9 @@ def build(timetable, config):
         if kind == "RET_SOM":
             return [(SOM, dep, dep, 0, 1),
                     (PED, dep + ps, dep + ps + dwell, 0, 0),
+                    (SAN, dep + ps + dwell + sp, dep + ps + dwell + sp, 1, 0)]
+        if kind == "RET_DIRECT":                      # Pedreña call not printed on the PDF
+            return [(SOM, dep, dep, 0, 1),
                     (SAN, dep + ps + dwell + sp, dep + ps + dwell + sp, 1, 0)]
         if kind == "OUT_PED":
             return [(SAN, dep, dep, 0, 1), (PED, dep + sp, dep + sp, 1, 0)]
@@ -152,7 +158,7 @@ def build(timetable, config):
                                       ("L", svc["weekday"], weekday_only),
                                       ("F", svc["weekend"], weekend_only)):
         for kind, dep in sorted(trips, key=lambda kd: (KIND_ORDER[kd[0]], kd[1])):
-            t = tpl[kind]
+            t = tpl["RET_SOM" if kind == "RET_DIRECT" else kind]
             tid = trip_id(letter, kind, dep)
             trip_rows.append(f"{tid},{route},{service_id},{t['shape']},"
                              f"{t['direction']},{t['headsign']},0,1")

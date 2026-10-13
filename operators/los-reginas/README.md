@@ -54,9 +54,9 @@ La verdad es `gtfs/*.txt`, editable a mano y revisable en cada `git diff`.
 | Vigilancia | [`src/check_source.py`](src/check_source.py) (`make watch`) | avisa cuando cambian los enlaces a PDF de la web |
 | Utilidad opcional | [`src/`](src/) | redacta el horario de temporada desde los PDF (los descarga de las URLs) |
 
-- **Línea Pedreña–Somo**: PDF *laborable* vigente desde **21/09/2026**, PDF
-  *fin de semana* desde **26/09/2026** (URLs en `src/config.json`). Verificado por última vez:
-  **2026-09-21**.
+- **Línea Pedreña–Somo**: PDF *laborable* vigente desde **13/10/2026**, PDF
+  *fin de semana* desde **17/10/2026** (URLs en `src/config.json`). Verificado por última vez:
+  **2026-10-13**.
 - **Línea El Puntal**: estática (`frequencies.txt`); no procede de PDF.
 - El tooling de [`src/`](src/) es **opcional y no autoritativo** (no lo ejecuta
   CI): redacta un borrador del horario regular que se revisa a mano. Cambios
