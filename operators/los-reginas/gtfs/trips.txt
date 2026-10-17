@@ -82,4 +82,3 @@ PS_F_1655P,pedrenya_somo,ped_fds,SAN_PED,0,Pedreña,0,1
 PS_F_1540O,pedrenya_somo,ped_fds,SAN_PED_SOM,0,Somo,0,1
 PS_F_1505R,pedrenya_somo,ped_fds,SOM_PED_SAN,1,Santander,0,1
 PS_F_1625R,pedrenya_somo,ped_fds,SOM_PED_SAN,1,Santander,0,1
-PS_F_1135R,pedrenya_somo,ped_fds,SOM_PED_SAN,1,Santander,0,1

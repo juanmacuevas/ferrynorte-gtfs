@@ -83,10 +83,10 @@
       }
     },
     {
-      "source_file": "https://www.losreginas.com/wp-content/uploads/2026/10/HORARIO-FINES-DE-SEMANA-17.10.26.pdf",
+      "source_file": "https://www.losreginas.com/wp-content/uploads/2026/10/HORARIO-FINES-DE-SEMANA-17.10.26-1.pdf",
       "source_title": "Horarios 2026.xlsx",
       "source_producer": "Microsoft: Print To PDF",
-      "source_sha256": "c0ee019f6c8ec522a33a4dfbcad87ec7f421a8d3f3e1dae2b3b8f05a5eeeebfb",
+      "source_sha256": "4930f8a3e77fe528f04c95e3bc53a8f4f8a81c9b657708ba44468af43e03eb83",
       "day_type": "weekend",
       "label_es": "SÁBADOS, DOMINGOS Y FESTIVOS",
       "effective_date": "2026-10-17",
@@ -115,7 +115,6 @@
         "somo_to_santander": [
           "10:00",
           "11:05",
-          "11:35",
           "12:15",
           "12:45",
           "13:25",
